@@ -40,7 +40,19 @@ if (!empty($_GET['q'])) {
     }
 }
 ?>
+<h3>Últimas búsquedas</h3>
+<ul>
+<?php
+if (isset($_COOKIE['historial'])) {
+    $historial = json_decode($_COOKIE['historial'], true);
+    foreach ($historial as $item) {
+        echo "<li>" . htmlspecialchars($item) . "</li>";
+    }
+}
+?>
+</ul>
 
 <a href="index.php">⬅️ Volver al inicio</a>
 </body>
 </html>
+

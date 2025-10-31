@@ -1,16 +1,20 @@
+<?php
+require 'auth.php';
+require 'conexion.php';
+?>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Discografía</title>
-</head>
+<head><title>Discografía</title></head>
 <body>
+<header>
+    <p>Bienvenido, <?= htmlspecialchars($_SESSION['usuario']) ?> |
+       <a href="logout.php">Cerrar sesión</a></p>
+</header>
+
 <h1>Lista de Álbumes</h1>
 
 <?php
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=discografia', 'discografia', 'discografia');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $st = $pdo->query("SELECT * FROM album ORDER BY titulo");
 
     echo "<ul>";
